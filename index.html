@@ -1,0 +1,127 @@
+  <style>
+    body {
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    form h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #6a11cb;
+    }
+
+    .nameError,.emailError,.phoneError{
+        color:red;
+    }
+
+    #submit {
+      width: 100%;
+      background-color: #6a11cb;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #submit:hover {
+      background-color: #3e0d84;
+    }
+  </style>
+<form >
+    <label>Name:</label><input id="name" type="text" placeholder="Enter your name">
+    <span class="nameError">Name must contain only letters</span>
+    <br><br>
+    <label>E-mail:</label><input id="email" type="text" placeholder="Enter your e-mail">
+    <span class="emailError">Please Provide valid Gmail Address</span>
+    <br><br>
+    <label>Phone:</label><input id="phone"type="text" placeholder="Enter your number">
+    <span class="phoneError">Phone number must contain 10 digits</span>
+    <br><br>
+    <input type="Submit" id="submit">
+
+</form>
+<script>
+    var submit=document.getElementById("submit")
+    submit.addEventListener("click",function(){
+    event.preventDefault()
+
+    var nameRegex=/^[a-zA-z]+$/
+    var emailRegex=/^[a-zA-z0-9]+@gmail\.com+$/
+    var phoneRegex=/^\d{10}$/
+
+    var name=document.getElementById("name")
+    var email=document.getElementById("email")
+    var phone=document.getElementById("phone")
+
+    var validate=true
+
+    if(nameRegex.test(name.value)==false){
+        document.querySelector(".nameError").style.display="inline"
+        validate=false
+
+    }
+    else{
+        document.querySelector(".nameError").style.display="none"
+
+    }
+    if(emailRegex.test(email.value)==false){
+        document.querySelector(".emailError").style.display="inline"
+        validate=false
+
+    }
+    else{
+        document.querySelector(".emailError").style.display="none"
+    }
+    if(phoneRegex.test(phone.value)==false){
+        document.querySelector(".phoneError").style.display="inline"
+        validate=false
+
+    }
+    else{
+        document.querySelector(".phoneError").style.display="none"
+
+    }
+    if(validate==true){
+        alert("Submitted Succesfully")
+    }
+    })
+</script>
